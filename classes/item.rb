@@ -1,3 +1,5 @@
+
+require_relative './book-store/label'
 class Item
     attr_accessor :publish_date
     attr_reader :archived, :id, :genre, :label, :author, :source
@@ -5,7 +7,7 @@ class Item
     def initialize(publish_date, archived: false)
       @publish_date = publish_date
       @archived = archived
-      @id = rand(1..100)
+      @id = Random.rand(1..100)
     end
   
     def author=(author)
