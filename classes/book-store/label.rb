@@ -7,5 +7,9 @@ def initialize(title='', color='')
   @title=title
   @color=color
   @items=[]
-  
+end
+def add_item(item)
+  item.is_a?(Item) && !@itmes.include?(item) &&
+   (@items.push(item) item.add_label(self))
+end
 end
