@@ -1,4 +1,4 @@
-require './item'
+require_relative './item'
 
 class App
     def options_menu
@@ -51,7 +51,7 @@ class App
     def exit
         puts 'Thank you for using the product catalog app'
     end
-    
+
     def start
         options_menu
     end
