@@ -33,3 +33,7 @@ CREATE TABLE items(
     CONSTRAINT label_fk FOREIGN KEY (label_id) REFERENCES labels(id),
     CONSTRAINT genre_fk FOREIGN KEY (genre_id) REFERENCES genres(id)
 );
+CREATE TABLE IF NOT EXISTS public.game (
+  multiplayer BOOLEAN,
+  last_played_at DATE,
+);
