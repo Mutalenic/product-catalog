@@ -4,8 +4,7 @@ def main
   app = App.new
   loop do
     app.start
-end
+  end
 end
 
 main
-
