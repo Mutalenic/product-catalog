@@ -17,3 +17,8 @@ CREATE TABLE sources (
     id INT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
 );
+CREATE TABLE authors (
+    id INT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL
+);
