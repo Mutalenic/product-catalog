@@ -13,3 +13,7 @@ CREATE TABLE labels (
     color VARCHAR(100),
     PRIMARY KEY(id)
 );
+CREATE TABLE sources (
+    id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+);
