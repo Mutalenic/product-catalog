@@ -8,9 +8,9 @@ class Startup
         3. List all genres(e.g. fiction, non-fiction, etc.)
         4. List all authors
         5. List all labels
-        3. Add a book
-        4. Add  music album
-        5. Exit"
+        6. Add a book
+        7. Add  music album
+        8. Exit"
 
     choice = gets.chomp
     selection(choice.to_i)
