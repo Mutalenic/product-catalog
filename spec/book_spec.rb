@@ -18,7 +18,7 @@ describe Book do
 
   context 'Checking book property values' do
     it 'publisher should be Mega' do
-     
+      expect(@book.publisher).to eq 'Mega'
     end
 
     it 'cover state should be Beuty' do
