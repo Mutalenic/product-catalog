@@ -1,9 +1,9 @@
-require './classes/startup'
+require_relative './classes/startup'
 
 def main
-  app = Startup.new
+  start = Startup.new
   loop do
-    app.start
+    start.start
   end
 end
 
