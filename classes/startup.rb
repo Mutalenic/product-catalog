@@ -1,10 +1,10 @@
-require './actions/game_actions'
+
 require_relative '../actions/music_actions'
 require_relative '../actions/book_action'
 
 class Startup
   def initialize
-    @game_actions = GameActions.new
+    
     @book_actions = BookAction.new
     @music_actions = MusicActions.new
   end
