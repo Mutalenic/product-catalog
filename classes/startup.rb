@@ -1,80 +1,88 @@
-require_relative '../actions/book_action'
+require './actions/game_actions'
 require_relative '../actions/music_actions'
+require_relative '../actions/book_action'
 
 class Startup
   def initialize
-    @book_action = BookAction.new
+    @game_actions = GameActions.new
+    @book_actions = BookAction.new
     @music_actions = MusicActions.new
   end
 
-  def options_menu
-    puts " Please choose an option by selecting the number next to the option:
-        1. List all books
-        2. List all music albums
-        3. List all genres(e.g. fiction, non-fiction, etc.)
-        4. List all authors
-        5. List all labels
-        6. Add a book
-        7. Add  music album
-        8. Exit"
-
+  def options_list
+    puts "\nPlease choose an option by selecting a number:
+    1. List all books
+    2. List all musics
+    3. List of games
+    4. List all lables
+    5. List all genre
+    6. List all authors
+    7. Add a book
+    8. Add a music
+    9. Add a game
+    10. Exit"
     choice = gets.chomp
     selection(choice.to_i)
   end
 
   def selection(choice)
     methods = [
-      method(:list_books),
-      method(:list_music_albums),
-      method(:list_genres),
-      method(:list_authors),
-      method(:list_labels),
-      method(:add_book),
-      method(:add_music_album),
-      method(:exit_app)
+      method(:booklist), method(:musiclist), method(:gamelist),
+      method(:lablelist), method(:genrelist), method(:authorlist),
+      method(:create_book), method(:create_music), method(:create_game),
+      method(:quite_app)
     ]
-    (1..8).include?(choice) && methods[choice - 1].call
+    (1..10).include?(choice) && methods[choice - 1].call
   end
 
-  def list_books
-    @book_action.list_books
+  def booklist
+    @book_actions.list_books
   end
 
-  def list_music_albums
-    @music_action.list_music_albums
+  def musiclist
+    @music_actions.list_musics
   end
 
-  def list_genres
-    @music_action.list_genres
+  def gamelist
+    @game_actions.list_games
   end
 
-  def list_labels
-    @book_action.list_labels
+  def lablelist
+    @book_actions.list_labels
   end
 
-  def list_authors
-    @music_action.list_authors
+  def genrelist
+    @music_actions.list_genres
   end
 
-  def add_book
-    @book_action.add_book
+  def authorlist
+    @game_actions.list_authors
   end
 
-  def add_music_album
-    @music_action.add_music_album
+  def create_book
+    @book_actions.add_book
   end
 
-  def exit_app
+  def create_music
+    @music_actions.add_a_music
+  end
+
+  def create_game
+    @game_actions.add_a_game
+  end
+
+  def quite_app
+    @game_actions.save_games
+    @game_actions.save_authors
     @book_actions.save_books
-    @music_actions.save_music_albums
+    @book_actions.save_labels
+    @music_actions.save_musics
     @music_actions.save_genres
-    @music_actions.save_authors
-    @music_actions.save_labels
-    puts 'Goodbye!'
+    puts 'Thanks for using our app'
     exit
   end
 
   def start
-    options_menu
+    options_list
   end
 end

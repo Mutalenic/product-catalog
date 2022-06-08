@@ -1,3 +1,4 @@
+require 'date'
 require_relative './book-store/label'
 class Item
   attr_accessor :publish_date
