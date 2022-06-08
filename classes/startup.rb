@@ -1,6 +1,6 @@
 require_relative './item'
 
-class App
+class Startup
   def options_menu
     puts " Please choose an option by selecting the number next to the option:
         1. List all books
