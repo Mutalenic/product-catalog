@@ -19,6 +19,9 @@ To get a local copy up and running follow these simple example steps.
 - go to the repository folder in your command prompt.
 - run bundle install.
 
+## Video Presentation
+[Video Link](https://drive.google.com/file/d/1ZaMa-XHFxW86GoPU3w58fPHEOQit6DEc/view?usp=sharing)
+
 ## Authors
 
 👤 **Nicholas Mutale**
