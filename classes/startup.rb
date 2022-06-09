@@ -68,8 +68,6 @@ class Startup
   end
 
   def quite_app
-    @game_actions.save_games
-    @game_actions.save_authors
     @book_actions.save_books
     @book_actions.save_labels
     @music_actions.save_musics
