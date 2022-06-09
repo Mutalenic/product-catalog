@@ -17,11 +17,6 @@ CREATE TABLE sources (
     id INT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
 );
-CREATE TABLE authors (
-    id INT PRIMARY KEY,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL
-);
 CREATE TABLE items(
     id SERIAL PRIMARY KEY,
     archived BOOLEAN DEFAULT 'f',
@@ -32,10 +27,6 @@ CREATE TABLE items(
     CONSTRAINT author_fk FOREIGN KEY (author_id) REFERENCES authors(id),
     CONSTRAINT label_fk FOREIGN KEY (label_id) REFERENCES labels(id),
     CONSTRAINT genre_fk FOREIGN KEY (genre_id) REFERENCES genres(id)
-);
-CREATE TABLE IF NOT EXISTS public.game (
-  multiplayer BOOLEAN,
-  last_played_at DATE,
 );
 
 
