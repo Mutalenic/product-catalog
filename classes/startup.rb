@@ -1,10 +1,8 @@
-
 require_relative '../actions/music_actions'
 require_relative '../actions/book_action'
 
 class Startup
   def initialize
-    
     @book_actions = BookAction.new
     @music_actions = MusicActions.new
   end
@@ -13,23 +11,20 @@ class Startup
     puts "\nPlease choose an option by selecting a number:
     1. List all books
     2. List all musics
-    3. List of games
-    4. List all lables
-    5. List all genre
-    6. List all authors
-    7. Add a book
-    8. Add a music
-    9. Add a game
-    10. Exit"
+    3. List all lables
+    4. List all genre
+    5. Add a book
+    6. Add a music
+    7. Exit"
     choice = gets.chomp
     selection(choice.to_i)
   end
 
   def selection(choice)
     methods = [
-      method(:booklist), method(:musiclist), method(:gamelist),
-      method(:lablelist), method(:genrelist), method(:authorlist),
-      method(:create_book), method(:create_music), method(:create_game),
+      method(:booklist), method(:musiclist),
+      method(:lablelist), method(:genrelist),
+      method(:create_book), method(:create_music),
       method(:quite_app)
     ]
     (1..10).include?(choice) && methods[choice - 1].call
@@ -72,8 +67,6 @@ class Startup
   end
 
   def quite_app
-    @game_actions.save_games
-    @game_actions.save_authors
     @book_actions.save_books
     @book_actions.save_labels
     @music_actions.save_musics

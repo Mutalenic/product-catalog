@@ -3,119 +3,105 @@ require './classes/genre'
 require 'json'
 
 class MusicActions
-  attr_accessor :music_albums, :genres
+  attr_accessor :musics, :genres
 
   def initialize
-    @music_albums = load_music_albums
+    @musics = load_musics
     @genres = load_genres
   end
 
-  def add_music_album
-    puts 'Publish date (YYYY-MM-DD): '
+  def add_a_music
+    puts 'Publish date (yyyy-mm-dd): '
     publish_date = gets.chomp
 
-    puts 'Archived: (true/false)'
-    archived = gets.chomp.downcase == 'true'
+    puts 'Is it archived? [Y/N]: '
+    archived = gets.chomp.downcase
 
-    puts 'On Spotify: (true/false)'
-    on_spotify = gets.chomp.downcase == 'true'
+    puts 'Is it on spotify? [Y/N]: '
+    on_spotify = gets.chomp.downcase
 
-    music_album = MusicAlbum.new(publish_date, archived, on_spotify)
-    @music_albums.push(music_album)
+    music = MusicAlbum.new(publish_date, archived, on_spotify)
+    @musics.push(music)
 
-    puts 'what genre do you want to add this album to?'
-    genre_name = gets.chomp
-    genre = Genre.new(genre_name)
-    genre.add_item(music_album)
-    @genres.push(music_album.genre)
-    puts 'Music album added'
+    puts 'what is the name of the genre: '
+    name = gets.chomp
+    genre = Genre.new(name)
+
+    genre.add_item(music)
+    @genres.push(music.genre)
+    puts "\nMusicAlbum added successfully.\n"
   end
 
-  def list_music_albums
-    if @music_albums.empty?
-      puts 'No music album in library'
+  def list_musics
+    if @musics.empty?
+      puts 'No music available yet!'
     else
-      @music_albums.each do |music_album|
+      @musics.each do |music|
         puts "
-                Music album ID: #{music_album['id']}
-                Publish date: #{music_album['publish_date']}
-                Archived: #{music_album['archived']}
-                On Spotify: #{music_album['on_spotify']}
-                "
+              Music id: #{music.id}
+              Archived: #{music.archived == 'y' ? 'Yes' : 'No'}
+              On spotify : #{music.on_spotify}
+              Published on : #{music.publish_date}
+              "
       end
     end
   end
 
   def list_genres
     if @genres.empty?
-      puts 'No genre in library'
+      puts 'no genres available!'
     else
       @genres.each do |genre|
         puts "
-                Genre ID: #{genre['id']}
-                Name: #{genre['name']}
-                "
+              genre's id: #{genre.id}
+              genre's name: #{genre.name}
+            "
       end
     end
   end
 
-  def load_music_albums
-    file = './data/music_albums.json'
+  def load_musics
     data = []
+    file = './data/musics.json'
     if File.exist?(file)
-      JSON.parse(File.read(file)).each do |music_album|
-        data.push(MusicAlbum.new(music_album['publish_date'], music_album['archived'],
-                                 music_album['on_spotify']))
+      JSON.parse(File.read(file)).each do |music|
+        data.push(MusicAlbum.new(music['publish_date'], music['archived'], music['on_spotify']))
       end
     else
-      File.write(file, JSON.generate([]))
+      File.write(file, [])
     end
     data
   end
 
   def load_genres
-    file = './data/genres.json'
     data = []
+    file = './data/genres.json'
     if File.exist?(file)
       JSON.parse(File.read(file)).each do |genre|
         data.push(Genre.new(genre['name']))
       end
     else
-      File.write(file, JSON.generate([]))
+      File.write(file, [])
     end
     data
   end
 
-  def save_music_albums
+  def save_musics
     data = []
-    @music_albums.each do |music_album|
-      data.push({
-                  id: music_album.id,
-                  publish_date: music_album.publish_date,
-                  archived: music_album.archived,
-                  on_spotify: music_album.on_spotify
-                })
+    @musics.each do |music|
+      data.push({ id: music.id,
+                  archived: music.archived,
+                  on_spotify: music.on_spotify,
+                  publish_date: music.publish_date })
     end
-    File.write('./data/music_albums.json', JSON.generate(data))
+    File.write('./data/musics.json', JSON.pretty_generate(data))
   end
 
   def save_genres
     data = []
     @genres.each do |genre|
-      data.push({
-                  id: genre.id,
-                  name: genre.name
-                })
+      data.push({ id: genre.id, name: genre.name })
     end
-    File.write('./data/genres.json', JSON.generate(data))
-  end
-
-  def to_hash(music_album)
-    {
-      id: music_album.id,
-      publish_date: music_album.publish_date,
-      archived: music_album.archived,
-      on_spotify: music_album.on_spotify
-    }
+    File.write('./data/genres.json', JSON.pretty_generate(data))
   end
 end
