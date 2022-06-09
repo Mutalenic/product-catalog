@@ -1,4 +1,3 @@
-
 require_relative '../actions/music_actions'
 require_relative '../actions/book_action'
 
@@ -23,8 +22,8 @@ class Startup
 
   def selection(choice)
     methods = [
-      method(:booklist), method(:musiclist), 
-      method(:lablelist), method(:genrelist), 
+      method(:booklist), method(:musiclist),
+      method(:lablelist), method(:genrelist),
       method(:create_book), method(:create_music),
       method(:quite_app)
     ]
