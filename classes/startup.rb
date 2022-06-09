@@ -25,7 +25,7 @@ class Startup
       method(:booklist), method(:musiclist),
       method(:lablelist), method(:genrelist),
       method(:create_book), method(:create_music),
-      method(:quite_app)
+      method(:quit_app)
     ]
     (1..10).include?(choice) && methods[choice - 1].call
   end
@@ -66,7 +66,7 @@ class Startup
     @game_actions.add_a_game
   end
 
-  def quite_app
+  def quit_app
     @book_actions.save_books
     @book_actions.save_labels
     @music_actions.save_musics

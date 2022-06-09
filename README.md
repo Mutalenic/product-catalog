@@ -1,8 +1,14 @@
 # Product Catalog
+In this project, we have created a console app that will help to keep a record of different types of things like: books and music albums. The data is be stored in JSON files.
 
 ## Built With
 
 - Ruby
+- Gem
+- Terminal
+- PostgresSQL
+- RSpec
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
